@@ -54,7 +54,7 @@ class Matcher(nn.Module):
         super(Matcher, self).__init__()
         # self.encoder = torchvision.models.__dict__['resnet50'](pretrained=True)
         self.eps = 1e-8
-        self.num_classes = 1
+        self.num_classes = 2
 
         self.enc1 = _EncoderBlock(1, 64)
         self.enc2 = _EncoderBlock(64, 128)
