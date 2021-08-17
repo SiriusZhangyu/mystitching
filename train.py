@@ -37,11 +37,11 @@ def main():
     net.to(device)
 
 
-    epochs = 50
+    epochs = 500
     save_path = './mystitch.pth'
     optimizer = optim.Adam(net.parameters(), lr=0.0002)
 
-    _loss = nn.MSELoss()
+    _loss = nn.CrossEntropyLoss()
     for epoch in range(epochs):
         # train
         net.train()
@@ -54,11 +54,11 @@ def main():
 
 
             output=net(source_img.to(device),sys_img.to(device))
-
-
-            loss=_loss(source_gt.to(device),output)
+            loss=_loss(output , source_gt.to(device, dtype=torch.int64))
 
             print(loss)
+
+
             loss.backward()
             optimizer.step()
 
